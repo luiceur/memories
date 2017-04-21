@@ -1,0 +1,17 @@
+#!/bin/bash --login
+#PBS -A k01-$USER
+#PBS -l select=1:aoe=quad_100
+#PBS -l walltime=00:30:00
+#PBS -N mpi_omp
+
+#module load perftools-lite
+#module swap PrgEnv-cray PrgEnv-intel
+
+# Move to directory that script was submitted from
+export PBS_O_WORKDIR=$(readlink -f $PBS_O_WORKDIR)
+cd $PBS_O_WORKDIR
+aprun -n 1  ./stride 
+
+
+
+
